@@ -1,0 +1,3 @@
+[submodule "Assets/Resources/Textures"]
+	path = Assets/Resources/Textures
+	url = git@github.com:CloudLandGame/CloudLand-Textures.git

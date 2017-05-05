@@ -7,7 +7,7 @@ namespace BlockEngine.Blocks
 {
     abstract class TransparentBlock : Block
     {
-        protected override bool isUpperSolid(Chunk chunk, int x, int y, int z, int meta)
+        protected override bool isUpperSolid(Chunk chunk, int x, int y, int z)
         {
             if (GetUpperBlockPrototype(chunk, x, y, z).id == id)
             {
@@ -19,7 +19,7 @@ namespace BlockEngine.Blocks
             }
         }
 
-        protected override bool isLowerSolid(Chunk chunk, int x, int y, int z, int meta)
+        protected override bool isLowerSolid(Chunk chunk, int x, int y, int z)
         {
             if (GetLowerBlockPrototype(chunk, x, y, z).id == id)
             {
@@ -31,7 +31,7 @@ namespace BlockEngine.Blocks
             }
         }
 
-        protected override bool isNorthernSolid(Chunk chunk, int x, int y, int z, int meta)
+        protected override bool isNorthernSolid(Chunk chunk, int x, int y, int z)
         {
             if (GetNorthernBlockPrototype(chunk, x, y, z).id == id)
             {
@@ -43,7 +43,7 @@ namespace BlockEngine.Blocks
             }
         }
 
-        protected override bool isEasternSolid(Chunk chunk, int x, int y, int z, int meta)
+        protected override bool isEasternSolid(Chunk chunk, int x, int y, int z)
         {
             if (GetEasternBlockPrototype(chunk, x, y, z).id == id)
             {
@@ -55,7 +55,7 @@ namespace BlockEngine.Blocks
             }
         }
 
-        protected override bool isSouthernSolid(Chunk chunk, int x, int y, int z, int meta)
+        protected override bool isSouthernSolid(Chunk chunk, int x, int y, int z)
         {
             if (GetSouthernBlockPrototype(chunk, x, y, z).id == id)
             {
@@ -67,7 +67,7 @@ namespace BlockEngine.Blocks
             }
         }
 
-        protected override bool isWesternSolid(Chunk chunk, int x, int y, int z, int meta)
+        protected override bool isWesternSolid(Chunk chunk, int x, int y, int z)
         {
             if (GetWesternBlockPrototype(chunk, x, y, z).id == id)
             {
@@ -79,7 +79,7 @@ namespace BlockEngine.Blocks
             }
         }
 
-        public override bool IsSolid(Block target, Direction direction, int meta)
+        public override bool IsSolid(Block target, Direction direction)
         {
             if (target.id == id)
             {

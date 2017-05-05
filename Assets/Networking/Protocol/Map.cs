@@ -23,20 +23,20 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CglNYXAucHJvdG8SI29yZy5kcmFnb25ldC5jbG91ZGxhbmQubmV0LnByb3Rv",
-            "Y29sImUKElNlcnZlckNodW5rTWVzc2FnZRIJCgF4GAEgASgREgkKAXoYAiAB",
-            "KBESCQoBeRgDIAEoERINCgVjaHVuaxgEIAEoDBIMCgRtZXRhGAUgASgMEhEK",
-            "CWNodW5rRGF0YRgGIAEoDCJjChhTZXJ2ZXJVcGRhdGVCbG9ja01lc3NhZ2US",
-            "CQoBeBgBIAEoERIJCgF5GAIgASgREgkKAXoYAyABKBESCgoCaWQYBCABKA0S",
-            "DAoEbWV0YRgFIAEoDRIMCgRkYXRhGAYgASgMIjsKGENsaWVudFJlbW92ZUJs",
-            "b2NrTWVzc2FnZRIJCgF4GAEgASgREgkKAXkYAiABKBESCQoBehgDIAEoESJv",
-            "Ch1TZXJ2ZXJVcGRhdGVCbG9ja0JhdGNoTWVzc2FnZRJOCgdyZWNvcmRzGAEg",
-            "AygLMj0ub3JnLmRyYWdvbmV0LmNsb3VkbGFuZC5uZXQucHJvdG9jb2wuU2Vy",
-            "dmVyVXBkYXRlQmxvY2tNZXNzYWdlYgZwcm90bzM="));
+            "Y29sIlcKElNlcnZlckNodW5rTWVzc2FnZRIJCgF4GAEgASgREgkKAXoYAiAB",
+            "KBESCQoBeRgDIAEoERINCgVjaHVuaxgEIAEoDBIRCgljaHVua0RhdGEYBSAB",
+            "KAwiVQoYU2VydmVyVXBkYXRlQmxvY2tNZXNzYWdlEgkKAXgYASABKBESCQoB",
+            "eRgCIAEoERIJCgF6GAMgASgREgoKAmlkGAQgASgNEgwKBGRhdGEYBSABKAwi",
+            "OwoYQ2xpZW50UmVtb3ZlQmxvY2tNZXNzYWdlEgkKAXgYASABKBESCQoBeRgC",
+            "IAEoERIJCgF6GAMgASgRIm8KHVNlcnZlclVwZGF0ZUJsb2NrQmF0Y2hNZXNz",
+            "YWdlEk4KB3JlY29yZHMYASADKAsyPS5vcmcuZHJhZ29uZXQuY2xvdWRsYW5k",
+            "Lm5ldC5wcm90b2NvbC5TZXJ2ZXJVcGRhdGVCbG9ja01lc3NhZ2ViBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Org.Dragonet.Cloudland.Net.Protocol.ServerChunkMessage), global::Org.Dragonet.Cloudland.Net.Protocol.ServerChunkMessage.Parser, new[]{ "X", "Z", "Y", "Chunk", "Meta", "ChunkData" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Org.Dragonet.Cloudland.Net.Protocol.ServerUpdateBlockMessage), global::Org.Dragonet.Cloudland.Net.Protocol.ServerUpdateBlockMessage.Parser, new[]{ "X", "Y", "Z", "Id", "Meta", "Data" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Org.Dragonet.Cloudland.Net.Protocol.ServerChunkMessage), global::Org.Dragonet.Cloudland.Net.Protocol.ServerChunkMessage.Parser, new[]{ "X", "Z", "Y", "Chunk", "ChunkData" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Org.Dragonet.Cloudland.Net.Protocol.ServerUpdateBlockMessage), global::Org.Dragonet.Cloudland.Net.Protocol.ServerUpdateBlockMessage.Parser, new[]{ "X", "Y", "Z", "Id", "Data" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Org.Dragonet.Cloudland.Net.Protocol.ClientRemoveBlockMessage), global::Org.Dragonet.Cloudland.Net.Protocol.ClientRemoveBlockMessage.Parser, new[]{ "X", "Y", "Z" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Org.Dragonet.Cloudland.Net.Protocol.ServerUpdateBlockBatchMessage), global::Org.Dragonet.Cloudland.Net.Protocol.ServerUpdateBlockBatchMessage.Parser, new[]{ "Records" }, null, null, null)
           }));
@@ -73,7 +73,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       z_ = other.z_;
       y_ = other.y_;
       chunk_ = other.chunk_;
-      meta_ = other.meta_;
       chunkData_ = other.chunkData_;
     }
 
@@ -126,19 +125,8 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       }
     }
 
-    /// <summary>Field number for the "meta" field.</summary>
-    public const int MetaFieldNumber = 5;
-    private pb::ByteString meta_ = pb::ByteString.Empty;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public pb::ByteString Meta {
-      get { return meta_; }
-      set {
-        meta_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
-      }
-    }
-
     /// <summary>Field number for the "chunkData" field.</summary>
-    public const int ChunkDataFieldNumber = 6;
+    public const int ChunkDataFieldNumber = 5;
     private pb::ByteString chunkData_ = pb::ByteString.Empty;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pb::ByteString ChunkData {
@@ -165,7 +153,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       if (Z != other.Z) return false;
       if (Y != other.Y) return false;
       if (Chunk != other.Chunk) return false;
-      if (Meta != other.Meta) return false;
       if (ChunkData != other.ChunkData) return false;
       return true;
     }
@@ -177,7 +164,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       if (Z != 0) hash ^= Z.GetHashCode();
       if (Y != 0) hash ^= Y.GetHashCode();
       if (Chunk.Length != 0) hash ^= Chunk.GetHashCode();
-      if (Meta.Length != 0) hash ^= Meta.GetHashCode();
       if (ChunkData.Length != 0) hash ^= ChunkData.GetHashCode();
       return hash;
     }
@@ -205,12 +191,8 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
         output.WriteRawTag(34);
         output.WriteBytes(Chunk);
       }
-      if (Meta.Length != 0) {
-        output.WriteRawTag(42);
-        output.WriteBytes(Meta);
-      }
       if (ChunkData.Length != 0) {
-        output.WriteRawTag(50);
+        output.WriteRawTag(42);
         output.WriteBytes(ChunkData);
       }
     }
@@ -229,9 +211,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       }
       if (Chunk.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(Chunk);
-      }
-      if (Meta.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Meta);
       }
       if (ChunkData.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(ChunkData);
@@ -255,9 +234,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       }
       if (other.Chunk.Length != 0) {
         Chunk = other.Chunk;
-      }
-      if (other.Meta.Length != 0) {
-        Meta = other.Meta;
       }
       if (other.ChunkData.Length != 0) {
         ChunkData = other.ChunkData;
@@ -289,10 +265,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
             break;
           }
           case 42: {
-            Meta = input.ReadBytes();
-            break;
-          }
-          case 50: {
             ChunkData = input.ReadBytes();
             break;
           }
@@ -330,7 +302,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       y_ = other.y_;
       z_ = other.z_;
       id_ = other.id_;
-      meta_ = other.meta_;
       data_ = other.data_;
     }
 
@@ -383,19 +354,8 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       }
     }
 
-    /// <summary>Field number for the "meta" field.</summary>
-    public const int MetaFieldNumber = 5;
-    private uint meta_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public uint Meta {
-      get { return meta_; }
-      set {
-        meta_ = value;
-      }
-    }
-
     /// <summary>Field number for the "data" field.</summary>
-    public const int DataFieldNumber = 6;
+    public const int DataFieldNumber = 5;
     private pb::ByteString data_ = pb::ByteString.Empty;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pb::ByteString Data {
@@ -422,7 +382,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       if (Y != other.Y) return false;
       if (Z != other.Z) return false;
       if (Id != other.Id) return false;
-      if (Meta != other.Meta) return false;
       if (Data != other.Data) return false;
       return true;
     }
@@ -434,7 +393,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       if (Y != 0) hash ^= Y.GetHashCode();
       if (Z != 0) hash ^= Z.GetHashCode();
       if (Id != 0) hash ^= Id.GetHashCode();
-      if (Meta != 0) hash ^= Meta.GetHashCode();
       if (Data.Length != 0) hash ^= Data.GetHashCode();
       return hash;
     }
@@ -462,12 +420,8 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
         output.WriteRawTag(32);
         output.WriteUInt32(Id);
       }
-      if (Meta != 0) {
-        output.WriteRawTag(40);
-        output.WriteUInt32(Meta);
-      }
       if (Data.Length != 0) {
-        output.WriteRawTag(50);
+        output.WriteRawTag(42);
         output.WriteBytes(Data);
       }
     }
@@ -486,9 +440,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       }
       if (Id != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Id);
-      }
-      if (Meta != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Meta);
       }
       if (Data.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
@@ -512,9 +463,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       }
       if (other.Id != 0) {
         Id = other.Id;
-      }
-      if (other.Meta != 0) {
-        Meta = other.Meta;
       }
       if (other.Data.Length != 0) {
         Data = other.Data;
@@ -545,11 +493,7 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
             Id = input.ReadUInt32();
             break;
           }
-          case 40: {
-            Meta = input.ReadUInt32();
-            break;
-          }
-          case 50: {
+          case 42: {
             Data = input.ReadBytes();
             break;
           }

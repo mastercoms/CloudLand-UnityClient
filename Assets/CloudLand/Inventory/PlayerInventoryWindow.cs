@@ -56,13 +56,10 @@ class PlayerInventoryWindow : GameWindow
             itemMeta.Entries[0].Int32Value = items[i].Id;
             itemMeta.Entries[1] = new SerializedMetadata.Types.MetadataEntry();
             itemMeta.Entries[1].Type = SerializedMetadata.Types.MetadataEntry.Types.DataType.Int32;
-            itemMeta.Entries[1].Int32Value = items[i].Meta;
+            itemMeta.Entries[1].Int32Value = (int)items[i].Count;
             itemMeta.Entries[2] = new SerializedMetadata.Types.MetadataEntry();
-            itemMeta.Entries[2].Type = SerializedMetadata.Types.MetadataEntry.Types.DataType.Int32;
-            itemMeta.Entries[2].Int32Value = (int)items[i].Count;
-            itemMeta.Entries[3] = new SerializedMetadata.Types.MetadataEntry();
-            itemMeta.Entries[3].Type = SerializedMetadata.Types.MetadataEntry.Types.DataType.Meta;
-            itemMeta.Entries[3].MetaValue = items[i].BinaryMeta;
+            itemMeta.Entries[2].Type = SerializedMetadata.Types.MetadataEntry.Types.DataType.Meta;
+            itemMeta.Entries[2].MetaValue = items[i].BinaryMeta;
             ent.MetaValue = itemMeta;
             inventoryElem.Value.Entries[i] = ent;
         }
@@ -81,13 +78,10 @@ class PlayerInventoryWindow : GameWindow
             itemMeta.Entries[0].Int32Value = cInItems[i].Id;
             itemMeta.Entries[1] = new SerializedMetadata.Types.MetadataEntry();
             itemMeta.Entries[1].Type = SerializedMetadata.Types.MetadataEntry.Types.DataType.Int32;
-            itemMeta.Entries[1].Int32Value = cInItems[i].Meta;
+            itemMeta.Entries[1].Int32Value = (int)cInItems[i].Count;
             itemMeta.Entries[2] = new SerializedMetadata.Types.MetadataEntry();
-            itemMeta.Entries[2].Type = SerializedMetadata.Types.MetadataEntry.Types.DataType.Int32;
-            itemMeta.Entries[2].Int32Value = (int)cInItems[i].Count;
-            itemMeta.Entries[3] = new SerializedMetadata.Types.MetadataEntry();
-            itemMeta.Entries[3].Type = SerializedMetadata.Types.MetadataEntry.Types.DataType.Meta;
-            itemMeta.Entries[3].MetaValue = cInItems[i].BinaryMeta;
+            itemMeta.Entries[2].Type = SerializedMetadata.Types.MetadataEntry.Types.DataType.Meta;
+            itemMeta.Entries[2].MetaValue = cInItems[i].BinaryMeta;
             ent.MetaValue = itemMeta;
             craftingInputElem.Value.Entries[i] = ent;
         }
@@ -106,13 +100,10 @@ class PlayerInventoryWindow : GameWindow
             itemMeta.Entries[0].Int32Value = cOutItems[i].Id;
             itemMeta.Entries[1] = new SerializedMetadata.Types.MetadataEntry();
             itemMeta.Entries[1].Type = SerializedMetadata.Types.MetadataEntry.Types.DataType.Int32;
-            itemMeta.Entries[1].Int32Value = cOutItems[i].Meta;
+            itemMeta.Entries[1].Int32Value = (int)cOutItems[i].Count;
             itemMeta.Entries[2] = new SerializedMetadata.Types.MetadataEntry();
-            itemMeta.Entries[2].Type = SerializedMetadata.Types.MetadataEntry.Types.DataType.Int32;
-            itemMeta.Entries[2].Int32Value = (int)cOutItems[i].Count;
-            itemMeta.Entries[3] = new SerializedMetadata.Types.MetadataEntry();
-            itemMeta.Entries[3].Type = SerializedMetadata.Types.MetadataEntry.Types.DataType.Meta;
-            itemMeta.Entries[3].MetaValue = cOutItems[i].BinaryMeta;
+            itemMeta.Entries[2].Type = SerializedMetadata.Types.MetadataEntry.Types.DataType.Meta;
+            itemMeta.Entries[2].MetaValue = cOutItems[i].BinaryMeta;
             ent.MetaValue = itemMeta;
             craftingOutputElem.Value.Entries[i] = ent;
         }

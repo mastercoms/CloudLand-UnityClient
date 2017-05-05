@@ -9,7 +9,7 @@ namespace BlockEngine.Blocks
 
         private int tex;
 
-        public override int GetTexturePosition(Direction direction, int meta)
+        public override int GetTexturePosition(Direction direction)
         {
             return tex;
         }
@@ -23,7 +23,7 @@ namespace BlockEngine.Blocks
             tex = textureManager.RegisterTexture("dirt");
         }
 
-        public override bool IsSolid(Block target, Direction direction, int meta)
+        public override bool IsSolid(Block target, Direction direction)
         {
             return true;
         }

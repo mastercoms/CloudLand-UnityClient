@@ -53,7 +53,7 @@ public class WindowManager : MonoBehaviour {
     void OnGUI()
     {
         if (cursorItem == null || cursorItem.Id == 0) return;
-        GUI.DrawTexture(new Rect(Input.mousePosition.x + 24, Screen.height - Input.mousePosition.y + 24, 24, 24), Inventory.getItemTexture(cursorItem.Id, cursorItem.Meta));
+        GUI.DrawTexture(new Rect(Input.mousePosition.x + 24, Screen.height - Input.mousePosition.y + 24, 24, 24), Inventory.getItemTexture(cursorItem.Id));
         GUI.Label(new Rect(Input.mousePosition.x + 32, Screen.height - Input.mousePosition.y + 32, 24, 20), cursorItem.Count.ToString());
     }
 

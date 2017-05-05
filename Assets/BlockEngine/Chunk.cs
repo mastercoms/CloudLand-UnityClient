@@ -45,7 +45,6 @@ public class Chunk : MonoBehaviour
     public Chunk[] relations = new Chunk[6];
 
     public byte[] blocks;
-    public byte[] meta;
     public ArrayList blockMeshes = new ArrayList();
 
     public const int chunkSize = 16;
@@ -124,17 +123,10 @@ public class Chunk : MonoBehaviour
         return blocks[pos2index(x, y, z)] << 8 | blocks[pos2index(x, y, z) + 1];
     }
 
-    public int GetMeta(int x, int y, int z)
-    {
-        return meta[pos2index(x, y, z)] << 8 | meta[pos2index(x, y, z) + 1];
-    }
-
-    public void SetBlock(int x, int y, int z, int id, int meta)
+    public void SetBlock(int x, int y, int z, int id)
     {
         blocks[pos2index(x, y, z)] = (byte)((id >> 8) & 0xFF);
         blocks[pos2index(x, y, z) + 1] = (byte)(id & 0xFF);
-        this.meta[pos2index(x, y, z)] = (byte)((meta >> 8) & 0xFF);
-        this.meta[pos2index(x, y, z) + 1] = (byte)(meta & 0xFF);
     }
 
     // Updates the chunk based on its contents
@@ -153,15 +145,14 @@ public class Chunk : MonoBehaviour
                     {
                         int idx = pos2index(x, y, z);
                         int id = (blocks[idx] << 8 | blocks[idx + 1]);
-                        int meta = (this.meta[idx] << 8 | this.meta[idx + 1]);
                         if (Block.isMeshBlock(id))
                         {
-                            blockMeshes.Add(new int[] { x, y, z, id, meta });
+                            blockMeshes.Add(new int[] { x, y, z, id });
                         }
                         else
                         {
                             Block block = Block.prototypes[id];
-                            meshData = block.GetBlockMeshData(this, relations, x, y, z, meta, meshData);
+                            meshData = block.GetBlockMeshData(this, relations, x, y, z, meshData);
                             if (block.IsBlockAnimated()) animated = true;
                         }
                     }

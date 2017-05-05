@@ -11,13 +11,13 @@ namespace BlockEngine.Blocks
         private int oakSide;
         private int oakVert;
 
-        public override int GetTexturePosition(Direction direction, int meta)
+        public override int GetTexturePosition(Direction direction)
         {
             if (direction == Direction.up || direction == Direction.down) return oakVert;
             return oakSide;
         }
 
-        public override long GetBreakTime(int toolId, int toolMeta)
+        public override long GetBreakTime(int toolId)
         {
             return 2000L;
         }

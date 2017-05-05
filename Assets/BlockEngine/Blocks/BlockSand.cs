@@ -11,12 +11,12 @@ namespace BlockEngine.Blocks
         private int tex;
 
 
-        public override long GetBreakTime(int toolId, int toolMeta)
+        public override long GetBreakTime(int toolId)
         {
             return 200L;
         }
 
-        public override int GetTexturePosition(Direction direction, int meta)
+        public override int GetTexturePosition(Direction direction)
         {
             return tex;
         }

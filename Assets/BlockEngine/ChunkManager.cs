@@ -30,7 +30,7 @@ public class ChunkManager : MonoBehaviour {
         */
     }
 
-    public void CreateChunk(int x, int y, int z, byte[] ids, byte[] data)
+    public void CreateChunk(int x, int y, int z, byte[] ids)
     {
         string chunkName = Chunk.Key(x, y, z);
         Object existChunk = chunkParent.Find(chunkName);
@@ -47,7 +47,6 @@ public class ChunkManager : MonoBehaviour {
         chunk.position = pos;
 
         chunk.blocks = ids;//new byte[Chunk.chunkSize * Chunk.chunkSize * Chunk.chunkSize * 2];
-        chunk.meta = data;//new byte[Chunk.chunkSize * Chunk.chunkSize * Chunk.chunkSize * 2];
 
         UpdateRelations(chunk);
 
@@ -61,17 +60,17 @@ public class ChunkManager : MonoBehaviour {
         MarkUpdate(x, y - 1, z);
     }
 
-    public int getFullBlockAt(int x, int y, int z)
+    public int getBlockAt(int x, int y, int z)
     {
         int cx = x >> 4;
         int cy = y >> 4;
         int cz = z >> 4;
         Transform t = chunkParent.Find(Chunk.Key(cx, cy, cz));
         if (t == null) return 0;
-        return (t.GetComponent<Chunk>().GetBlock(x & 0xF, y & 0xF, z & 0xF) << 16) | (t.GetComponent<Chunk>().GetMeta(x & 0xF, y & 0xF, z & 0xF) & 0xFFFF);
+        return t.GetComponent<Chunk>().GetBlock(x & 0xF, y & 0xF, z & 0xF);
     }
 
-    public void setBlockAt(int x, int y, int z, int id, int meta)
+    public void setBlockAt(int x, int y, int z, int id)
     {
         int cx = x >> 4;
         int cy = y >> 4;
@@ -79,14 +78,14 @@ public class ChunkManager : MonoBehaviour {
         Chunk c = getChunk(cx, cy, cz);
         if (c == null)
         {
-            CreateChunk(cx, cy, cz, new byte[2 * 16 * 16 * 16], new byte[2 * 16 * 16 * 16]);
+            CreateChunk(cx, cy, cz, new byte[2 * 16 * 16 * 16]);
             c = getChunk(cx, cy, cz);
         }
 
         int bx = x & 0xF;
         int by = y & 0xF;
         int bz = z & 0xF;
-        c.SetBlock(bx, by, bz, id, meta);
+        c.SetBlock(bx, by, bz, id);
 
         c.forceUpdate = true;
         foreach(Chunk rel in c.relations)

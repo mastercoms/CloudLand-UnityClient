@@ -12,7 +12,7 @@ namespace BlockEngine.Blocks
         private int side;
         private int down;
 
-        public override long GetBreakTime(int toolId, int toolMeta)
+        public override long GetBreakTime(int toolId)
         {
             return 200L;
         }
@@ -32,7 +32,7 @@ namespace BlockEngine.Blocks
             down = textureManager.RegisterTexture("grass_down");
         }
 
-        public override int GetTexturePosition(Direction direction, int meta)
+        public override int GetTexturePosition(Direction direction)
         {
             if (direction == Direction.up) return top;
             if (direction == Direction.down) return down;

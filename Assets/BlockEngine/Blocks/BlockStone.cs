@@ -9,7 +9,7 @@ namespace BlockEngine.Blocks
 
         private int tex;
 
-        public override long GetBreakTime(int toolId, int toolMeta)
+        public override long GetBreakTime(int toolId)
         {
             return 10000L;
         }
@@ -24,7 +24,7 @@ namespace BlockEngine.Blocks
             tex = textureManager.RegisterTexture("stone");
         }
 
-        public override int GetTexturePosition(Direction direction, int meta)
+        public override int GetTexturePosition(Direction direction)
         {
             return tex;
         }

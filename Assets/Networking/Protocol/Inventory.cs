@@ -23,16 +23,16 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg9JbnZlbnRvcnkucHJvdG8SI29yZy5kcmFnb25ldC5jbG91ZGxhbmQubmV0",
-            "LnByb3RvY29sGg5NZXRhZGF0YS5wcm90byKGAQoOU2VyaWFsaXplZEl0ZW0S",
-            "CgoCaWQYASABKAUSDAoEbWV0YRgCIAEoBRINCgVjb3VudBgDIAEoDRJLCgpi",
-            "aW5hcnlNZXRhGAQgASgLMjcub3JnLmRyYWdvbmV0LmNsb3VkbGFuZC5uZXQu",
-            "cHJvdG9jb2wuU2VyaWFsaXplZE1ldGFkYXRhIi0KHENsaWVudEhvdGJhclNl",
-            "bGVjdGlvbk1lc3NhZ2USDQoFaW5kZXgYASABKBEiKwoXQ2xpZW50UGlja1Vw",
-            "SXRlbU1lc3NhZ2USEAoIZW50aXR5SWQYASABKARiBnByb3RvMw=="));
+            "LnByb3RvY29sGg5NZXRhZGF0YS5wcm90byJ4Cg5TZXJpYWxpemVkSXRlbRIK",
+            "CgJpZBgBIAEoBRINCgVjb3VudBgCIAEoDRJLCgpiaW5hcnlNZXRhGAMgASgL",
+            "Mjcub3JnLmRyYWdvbmV0LmNsb3VkbGFuZC5uZXQucHJvdG9jb2wuU2VyaWFs",
+            "aXplZE1ldGFkYXRhIi0KHENsaWVudEhvdGJhclNlbGVjdGlvbk1lc3NhZ2US",
+            "DQoFaW5kZXgYASABKBEiKwoXQ2xpZW50UGlja1VwSXRlbU1lc3NhZ2USEAoI",
+            "ZW50aXR5SWQYASABKARiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Org.Dragonet.Cloudland.Net.Protocol.MetadataReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::Org.Dragonet.Cloudland.Net.Protocol.SerializedItem), global::Org.Dragonet.Cloudland.Net.Protocol.SerializedItem.Parser, new[]{ "Id", "Meta", "Count", "BinaryMeta" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Org.Dragonet.Cloudland.Net.Protocol.SerializedItem), global::Org.Dragonet.Cloudland.Net.Protocol.SerializedItem.Parser, new[]{ "Id", "Count", "BinaryMeta" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Org.Dragonet.Cloudland.Net.Protocol.ClientHotbarSelectionMessage), global::Org.Dragonet.Cloudland.Net.Protocol.ClientHotbarSelectionMessage.Parser, new[]{ "Index" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Org.Dragonet.Cloudland.Net.Protocol.ClientPickUpItemMessage), global::Org.Dragonet.Cloudland.Net.Protocol.ClientPickUpItemMessage.Parser, new[]{ "EntityId" }, null, null, null)
           }));
@@ -66,7 +66,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SerializedItem(SerializedItem other) : this() {
       id_ = other.id_;
-      meta_ = other.meta_;
       count_ = other.count_;
       BinaryMeta = other.binaryMeta_ != null ? other.BinaryMeta.Clone() : null;
     }
@@ -87,19 +86,8 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       }
     }
 
-    /// <summary>Field number for the "meta" field.</summary>
-    public const int MetaFieldNumber = 2;
-    private int meta_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int Meta {
-      get { return meta_; }
-      set {
-        meta_ = value;
-      }
-    }
-
     /// <summary>Field number for the "count" field.</summary>
-    public const int CountFieldNumber = 3;
+    public const int CountFieldNumber = 2;
     private uint count_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public uint Count {
@@ -110,7 +98,7 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
     }
 
     /// <summary>Field number for the "binaryMeta" field.</summary>
-    public const int BinaryMetaFieldNumber = 4;
+    public const int BinaryMetaFieldNumber = 3;
     private global::Org.Dragonet.Cloudland.Net.Protocol.SerializedMetadata binaryMeta_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::Org.Dragonet.Cloudland.Net.Protocol.SerializedMetadata BinaryMeta {
@@ -134,7 +122,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
         return true;
       }
       if (Id != other.Id) return false;
-      if (Meta != other.Meta) return false;
       if (Count != other.Count) return false;
       if (!object.Equals(BinaryMeta, other.BinaryMeta)) return false;
       return true;
@@ -144,7 +131,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
     public override int GetHashCode() {
       int hash = 1;
       if (Id != 0) hash ^= Id.GetHashCode();
-      if (Meta != 0) hash ^= Meta.GetHashCode();
       if (Count != 0) hash ^= Count.GetHashCode();
       if (binaryMeta_ != null) hash ^= BinaryMeta.GetHashCode();
       return hash;
@@ -161,16 +147,12 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
         output.WriteRawTag(8);
         output.WriteInt32(Id);
       }
-      if (Meta != 0) {
-        output.WriteRawTag(16);
-        output.WriteInt32(Meta);
-      }
       if (Count != 0) {
-        output.WriteRawTag(24);
+        output.WriteRawTag(16);
         output.WriteUInt32(Count);
       }
       if (binaryMeta_ != null) {
-        output.WriteRawTag(34);
+        output.WriteRawTag(26);
         output.WriteMessage(BinaryMeta);
       }
     }
@@ -180,9 +162,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       int size = 0;
       if (Id != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Id);
-      }
-      if (Meta != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Meta);
       }
       if (Count != 0) {
         size += 1 + pb::CodedOutputStream.ComputeUInt32Size(Count);
@@ -200,9 +179,6 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
       }
       if (other.Id != 0) {
         Id = other.Id;
-      }
-      if (other.Meta != 0) {
-        Meta = other.Meta;
       }
       if (other.Count != 0) {
         Count = other.Count;
@@ -228,14 +204,10 @@ namespace Org.Dragonet.Cloudland.Net.Protocol {
             break;
           }
           case 16: {
-            Meta = input.ReadInt32();
-            break;
-          }
-          case 24: {
             Count = input.ReadUInt32();
             break;
           }
-          case 34: {
+          case 26: {
             if (binaryMeta_ == null) {
               binaryMeta_ = new global::Org.Dragonet.Cloudland.Net.Protocol.SerializedMetadata();
             }

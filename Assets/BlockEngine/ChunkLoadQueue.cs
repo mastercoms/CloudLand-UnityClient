@@ -10,7 +10,6 @@ public class ChunkLoadQueue : MonoBehaviour {
         public int y;
         public int z;
         public byte[] ids;
-        public byte[] data;
     }
 
     private ChunkManager chunkManager;
@@ -42,7 +41,7 @@ public class ChunkLoadQueue : MonoBehaviour {
             {
                 countCreation++;
                 ChunkCreationParameters para = creationQueue.Dequeue();
-                chunkManager.CreateChunk(para.x, para.y, para.z, para.ids, para.data);
+                chunkManager.CreateChunk(para.x, para.y, para.z, para.ids);
             }
         }
 
@@ -79,8 +78,7 @@ public class ChunkLoadQueue : MonoBehaviour {
             x = x,
             y = y,
             z = z,
-            ids = ids,
-            data = data
+            ids = ids
         };
         lock (creationQueue)
         {

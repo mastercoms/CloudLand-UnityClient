@@ -10,7 +10,7 @@ namespace BlockEngine.Blocks
 
         private int oak;
 
-        public override int GetTexturePosition(Direction direction, int meta)
+        public override int GetTexturePosition(Direction direction)
         {
             return oak;
         }
@@ -25,7 +25,7 @@ namespace BlockEngine.Blocks
             oak = textureManager.RegisterTexture("leaves_oak");
         }
 
-        public override long GetBreakTime(int toolId, int toolMeta)
+        public override long GetBreakTime(int toolId)
         {
             return 200L;
         }

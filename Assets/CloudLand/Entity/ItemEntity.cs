@@ -60,7 +60,7 @@ public class ItemEntity : Entity {
             // int item_count = item[2].Int32Value;
             MeshRenderer renderer = GetComponentInChildren<MeshRenderer>();
             Material mat = new Material(itemMaterial);
-            mat.mainTexture = Inventory.getItemTexture(item_id, item_meta);
+            mat.mainTexture = Inventory.getItemTexture(item_id);
             renderer.material = mat;
         }
     }

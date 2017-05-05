@@ -23,7 +23,7 @@ namespace CloudLand.Networking.Handlers
 
         private void handleSingle(CloudLandClient client, ServerUpdateBlockMessage message)
         {
-            Loom.QueueOnMainThread(() => client.getClientComponent().chunkManager.setBlockAt(message.X, message.Y, message.Z, (int)(message.Id & 0xFFFF), (int)(message.Meta & 0xFFFF)));
+            Loom.QueueOnMainThread(() => client.getClientComponent().chunkManager.setBlockAt(message.X, message.Y, message.Z, (int)(message.Id & 0xFFFF)));
         }
     }
 }

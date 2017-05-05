@@ -40,12 +40,12 @@ public class PlayerInventory : Inventory {
         if (items[currentSelection] == null || items[currentSelection].Id == 0)
         {
             SetArmShown(true);
-            SetBlockShown(false, 0, 0);
+            SetBlockShown(false, 0);
         } else
         {
             if (items[currentSelection].Id < Block.prototypes.Length)
             {
-                SetBlockShown(true, items[currentSelection].Id, items[currentSelection].Meta);
+                SetBlockShown(true, items[currentSelection].Id);
                 SetArmShown(false);
             } else
             {
@@ -77,7 +77,7 @@ public class PlayerInventory : Inventory {
         {
             if (items[slot] != null && items[slot].Id != 0)
             {
-                GUI.DrawTexture(new Rect(padding + slotWidth * slot, 6, 32, 32), Inventory.getItemTexture(items[slot].Id, items[slot].Meta));
+                GUI.DrawTexture(new Rect(padding + slotWidth * slot, 6, 32, 32), Inventory.getItemTexture(items[slot].Id));
                 GUI.Label(new Rect(padding + slotWidth * slot + (slotWidth / 2), slotWidth / 2, 32, 32), items[slot].Count.ToString());
             }
             if (slot == currentSelection)
@@ -92,16 +92,15 @@ public class PlayerInventory : Inventory {
         return items[currentSelection];
     }
 
-    private int[] blockShownInfo = new int[] { 0, 0 };
+    private int blockShownInfo = 0;
 
-    public void SetBlockShown(bool show, int id, int meta)
+    public void SetBlockShown(bool show, int id)
     {
         GameObject block = hand.FindChild("Block").gameObject;
-        if (show && (blockShownInfo[0] != id || blockShownInfo[1] != meta))
+        if (show && blockShownInfo != id)
         {
-            blockShownInfo[0] = id;
-            blockShownInfo[1] = meta;
-            block.GetComponent<MeshRenderer>().material.mainTexture = Inventory.getItemTexture(id, meta);
+            blockShownInfo = id;
+            block.GetComponent<MeshRenderer>().material.mainTexture = Inventory.getItemTexture(id);
         }
         if (block.activeSelf == show) return;
         block.SetActive(show);
@@ -140,9 +139,8 @@ public class PlayerInventory : Inventory {
         {
             reference[i] = new SerializedItem();
             reference[i].Id = meta.Entries[i].MetaValue.Entries[0].Int32Value;
-            reference[i].Meta = meta.Entries[i].MetaValue.Entries[1].Int32Value;
-            reference[i].Count = (uint)meta.Entries[i].MetaValue.Entries[2].Int32Value;
-            reference[i].BinaryMeta = meta.Entries[i].MetaValue.Entries[3].MetaValue;
+            reference[i].Count = (uint)meta.Entries[i].MetaValue.Entries[1].Int32Value;
+            reference[i].BinaryMeta = meta.Entries[i].MetaValue.Entries[2].MetaValue;
         }
         switch (elem)
         {

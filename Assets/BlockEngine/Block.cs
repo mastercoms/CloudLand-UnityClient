@@ -75,11 +75,11 @@ public abstract class Block
         }
         return prototypes[chunk.GetBlock(x, y + 1, z)];
     }
-    protected virtual bool isUpperSolid(Chunk chunk, int x, int y, int z, int meta)
+    protected virtual bool isUpperSolid(Chunk chunk, int x, int y, int z)
     {
         Block upperBlock = GetUpperBlockPrototype(chunk, x, y, z);
         if (upperBlock == null) return false;
-        return upperBlock.IsSolid(upperBlock, Direction.down, meta);
+        return upperBlock.IsSolid(upperBlock, Direction.down);
     }
 
     protected Block GetLowerBlockPrototype(Chunk chunk, int x, int y, int z)
@@ -95,11 +95,11 @@ public abstract class Block
         return prototypes[chunk.GetBlock(x, y - 1, z)];
     }
 
-    protected virtual bool isLowerSolid(Chunk chunk, int x, int y, int z, int meta)
+    protected virtual bool isLowerSolid(Chunk chunk, int x, int y, int z)
     {
         Block lowerBlock = GetLowerBlockPrototype(chunk, x, y, z);
         if(lowerBlock == null) return false;
-        return lowerBlock.IsSolid(lowerBlock, Direction.up, meta);
+        return lowerBlock.IsSolid(lowerBlock, Direction.up);
     }
 
     protected Block GetNorthernBlockPrototype(Chunk chunk, int x, int y, int z)
@@ -115,11 +115,11 @@ public abstract class Block
         return prototypes[chunk.GetBlock(x, y, z + 1)];
     }
 
-    protected virtual bool isNorthernSolid(Chunk chunk, int x, int y, int z, int meta)
+    protected virtual bool isNorthernSolid(Chunk chunk, int x, int y, int z)
     {
         Block northernBlock = GetNorthernBlockPrototype(chunk, x, y, z);
         if (northernBlock == null) return false;
-        return northernBlock.IsSolid(northernBlock, Direction.south, meta);
+        return northernBlock.IsSolid(northernBlock, Direction.south);
     }
 
     protected Block GetSouthernBlockPrototype(Chunk chunk, int x, int y, int z)
@@ -135,11 +135,11 @@ public abstract class Block
         return prototypes[chunk.GetBlock(x, y, z - 1)];
     }
 
-    protected virtual bool isSouthernSolid(Chunk chunk, int x, int y, int z, int meta)
+    protected virtual bool isSouthernSolid(Chunk chunk, int x, int y, int z)
     {
         Block southernBlock = GetSouthernBlockPrototype(chunk, x, y, z);
         if (southernBlock == null) return false;
-        return southernBlock.IsSolid(southernBlock, Direction.north, meta);
+        return southernBlock.IsSolid(southernBlock, Direction.north);
     }
 
     protected Block GetEasternBlockPrototype(Chunk chunk, int x, int y, int z)
@@ -155,11 +155,11 @@ public abstract class Block
         return prototypes[chunk.GetBlock(x + 1, y, z)];
     }
 
-    protected virtual bool isEasternSolid(Chunk chunk, int x, int y, int z, int meta)
+    protected virtual bool isEasternSolid(Chunk chunk, int x, int y, int z)
     {
         Block easternBlock = GetEasternBlockPrototype(chunk, x, y, z);
         if (easternBlock == null) return false;
-        return easternBlock.IsSolid(easternBlock, Direction.west, meta);
+        return easternBlock.IsSolid(easternBlock, Direction.west);
     }
 
     protected Block GetWesternBlockPrototype(Chunk chunk, int x, int y, int z)
@@ -175,58 +175,58 @@ public abstract class Block
         return prototypes[chunk.GetBlock(x - 1, y, z)];
     }
 
-    protected virtual bool isWesternSolid(Chunk chunk, int x, int y, int z, int meta)
+    protected virtual bool isWesternSolid(Chunk chunk, int x, int y, int z)
     {
         Block westernBlock = GetWesternBlockPrototype(chunk, x, y, z);
         if (westernBlock == null) return false;
-        return westernBlock.IsSolid(westernBlock, Direction.east, meta);
+        return westernBlock.IsSolid(westernBlock, Direction.east);
     }
 
 
-    public virtual MeshData GetBlockMeshData (Chunk chunk, Chunk[] relations, int x, int y, int z, int meta, MeshData meshData)
+    public virtual MeshData GetBlockMeshData (Chunk chunk, Chunk[] relations, int x, int y, int z, MeshData meshData)
     {
-        if (!isUpperSolid(chunk, x, y, z, meta)){
-            meshData = FaceDataUp(chunk, x, y, z, meta,  meshData);
+        if (!isUpperSolid(chunk, x, y, z)){
+            meshData = FaceDataUp(chunk, x, y, z,  meshData);
         }
 
         
-        if (!isLowerSolid(chunk, x, y, z, meta))
+        if (!isLowerSolid(chunk, x, y, z))
         {
-            meshData = FaceDataDown(chunk, x, y, z, meta, meshData);
+            meshData = FaceDataDown(chunk, x, y, z, meshData);
         }
         
-        if (!isNorthernSolid(chunk, x, y, z, meta))
+        if (!isNorthernSolid(chunk, x, y, z))
         {
-            meshData = FaceDataNorth(chunk, x, y, z, meta, meshData);
+            meshData = FaceDataNorth(chunk, x, y, z, meshData);
         }
 
-        if (!isSouthernSolid(chunk, x, y, z, meta))
+        if (!isSouthernSolid(chunk, x, y, z))
         {
-            meshData = FaceDataSouth(chunk, x, y, z, meta, meshData);
+            meshData = FaceDataSouth(chunk, x, y, z, meshData);
         }
 
-        if (!isEasternSolid(chunk, x, y, z, meta))
+        if (!isEasternSolid(chunk, x, y, z))
         {
-            meshData = FaceDataEast(chunk, x, y, z, meta, meshData);
+            meshData = FaceDataEast(chunk, x, y, z, meshData);
         }
 
-        if (!isWesternSolid(chunk, x, y, z, meta))
+        if (!isWesternSolid(chunk, x, y, z))
         {
-            meshData = FaceDataWest(chunk, x, y, z, meta, meshData);
+            meshData = FaceDataWest(chunk, x, y, z, meshData);
         }
 
         return meshData;
 
     }
 
-    public virtual bool HasFaceCollider(Direction dir, int meta)
+    public virtual bool HasFaceCollider(Direction dir)
     {
         return true;
     }
 
     #region "face data"
     protected virtual MeshData FaceDataUp
-        (Chunk chunk, int x, int y, int z, int meta, MeshData meshData)
+        (Chunk chunk, int x, int y, int z, MeshData meshData)
     {
         meshData.vertices.Add(new Vector3(x, y + 1f, z + 1f));
         meshData.vertices.Add(new Vector3(x + 1f, y + 1f, z + 1f));
@@ -234,9 +234,9 @@ public abstract class Block
         meshData.vertices.Add(new Vector3(x, y + 1f, z));
 
         meshData.AddQuadTriangles();
-        meshData.uv.AddRange(GetFaceUVs(Direction.up, meta));
+        meshData.uv.AddRange(GetFaceUVs(Direction.up));
 
-        if(HasFaceCollider(Direction.up, meta))
+        if(HasFaceCollider(Direction.up))
         {
             meshData.collider.Add(new Vector3(x, y + 1f, z + 1f));
             meshData.collider.Add(new Vector3(x + 1f, y + 1f, z + 1f));
@@ -249,7 +249,7 @@ public abstract class Block
     }
 
     protected virtual MeshData FaceDataDown
-        (Chunk chunk, int x, int y, int z, int meta, MeshData meshData)
+        (Chunk chunk, int x, int y, int z, MeshData meshData)
     {
         meshData.vertices.Add(new Vector3(x, y, z));
         meshData.vertices.Add(new Vector3(x + 1f, y, z));
@@ -257,8 +257,8 @@ public abstract class Block
         meshData.vertices.Add(new Vector3(x, y, z + 1f));
 
         meshData.AddQuadTriangles();
-        meshData.uv.AddRange(GetFaceUVs(Direction.down, meta));
-        if (HasFaceCollider(Direction.down, meta))
+        meshData.uv.AddRange(GetFaceUVs(Direction.down));
+        if (HasFaceCollider(Direction.down))
         {
             meshData.collider.Add(new Vector3(x, y, z));
             meshData.collider.Add(new Vector3(x + 1f, y, z));
@@ -271,7 +271,7 @@ public abstract class Block
     }
 
     protected virtual MeshData FaceDataNorth
-        (Chunk chunk, int x, int y, int z, int meta, MeshData meshData)
+        (Chunk chunk, int x, int y, int z, MeshData meshData)
     {
         meshData.vertices.Add(new Vector3(x + 1f, y, z + 1f));
         meshData.vertices.Add(new Vector3(x + 1f, y + 1f, z + 1f));
@@ -279,9 +279,9 @@ public abstract class Block
         meshData.vertices.Add(new Vector3(x, y, z + 1f));
 
         meshData.AddQuadTriangles();
-        meshData.uv.AddRange(GetFaceUVs(Direction.north, meta));
+        meshData.uv.AddRange(GetFaceUVs(Direction.north));
 
-        if(HasFaceCollider(Direction.north, meta))
+        if(HasFaceCollider(Direction.north))
         {
             meshData.collider.Add(new Vector3(x + 1f, y, z + 1f));
             meshData.collider.Add(new Vector3(x + 1f, y + 1f, z + 1f));
@@ -294,7 +294,7 @@ public abstract class Block
     }
 
     protected virtual MeshData FaceDataEast
-        (Chunk chunk, int x, int y, int z, int meta, MeshData meshData)
+        (Chunk chunk, int x, int y, int z, MeshData meshData)
     {
         meshData.vertices.Add(new Vector3(x + 1f, y, z));
         meshData.vertices.Add(new Vector3(x + 1f, y + 1f, z));
@@ -302,9 +302,9 @@ public abstract class Block
         meshData.vertices.Add(new Vector3(x + 1f, y, z + 1f));
 
         meshData.AddQuadTriangles();
-        meshData.uv.AddRange(GetFaceUVs(Direction.east, meta));
+        meshData.uv.AddRange(GetFaceUVs(Direction.east));
 
-        if(HasFaceCollider(Direction.east, meta))
+        if(HasFaceCollider(Direction.east))
         {
             meshData.collider.Add(new Vector3(x + 1f, y, z));
             meshData.collider.Add(new Vector3(x + 1f, y + 1f, z));
@@ -317,7 +317,7 @@ public abstract class Block
     }
 
     protected virtual MeshData FaceDataSouth
-        (Chunk chunk, int x, int y, int z, int meta, MeshData meshData)
+        (Chunk chunk, int x, int y, int z, MeshData meshData)
     {
         meshData.vertices.Add(new Vector3(x, y, z));
         meshData.vertices.Add(new Vector3(x, y + 1f, z));
@@ -325,9 +325,9 @@ public abstract class Block
         meshData.vertices.Add(new Vector3(x + 1f, y, z));
 
         meshData.AddQuadTriangles();
-        meshData.uv.AddRange(GetFaceUVs(Direction.south, meta));
+        meshData.uv.AddRange(GetFaceUVs(Direction.south));
 
-        if(HasFaceCollider(Direction.south, meta))
+        if(HasFaceCollider(Direction.south))
         {
             meshData.collider.Add(new Vector3(x, y, z));
             meshData.collider.Add(new Vector3(x, y + 1f, z));
@@ -340,7 +340,7 @@ public abstract class Block
     }
 
     protected virtual MeshData FaceDataWest
-        (Chunk chunk, int x, int y, int z, int meta, MeshData meshData)
+        (Chunk chunk, int x, int y, int z, MeshData meshData)
     {
         meshData.vertices.Add(new Vector3(x, y, z + 1f));
         meshData.vertices.Add(new Vector3(x, y + 1f, z + 1f));
@@ -348,9 +348,9 @@ public abstract class Block
         meshData.vertices.Add(new Vector3(x, y, z));
 
         meshData.AddQuadTriangles();
-        meshData.uv.AddRange(GetFaceUVs(Direction.west, meta));
+        meshData.uv.AddRange(GetFaceUVs(Direction.west));
 
-        if(HasFaceCollider(Direction.west, meta))
+        if(HasFaceCollider(Direction.west))
         {
             meshData.collider.Add(new Vector3(x, y, z + 1f));
             meshData.collider.Add(new Vector3(x, y + 1f, z + 1f));
@@ -364,12 +364,12 @@ public abstract class Block
     #endregion
 
     #region "uv data"
-    public abstract int GetTexturePosition(Direction direction, int meta);
+    public abstract int GetTexturePosition(Direction direction);
 
-    public virtual Vector2[] GetFaceUVs(Direction direction, int meta)
+    public virtual Vector2[] GetFaceUVs(Direction direction)
     {
         Vector2[] UVs = new Vector2[4];
-        Rect tilePos = textureManager.texturePositions[0][GetTexturePosition(direction, meta)];
+        Rect tilePos = textureManager.texturePositions[0][GetTexturePosition(direction)];
         /*
         UVs[0] = new Vector2(tilePos.width * tilePos.x + tilePos.width,
             tilePos.height * tilePos.y);
@@ -390,16 +390,16 @@ public abstract class Block
 
     public long GetBreakTime(Org.Dragonet.Cloudland.Net.Protocol.SerializedItem item)
     {
-        if (item == null) return GetBreakTime(0, 0);
-        return GetBreakTime(item.Id, item.Meta);
+        if (item == null) return GetBreakTime(0);
+        return GetBreakTime(item.Id);
     }
 
-    public virtual long GetBreakTime(int toolId, int toolMeta)
+    public virtual long GetBreakTime(int toolId)
     {
         return 500L;
     }
 
-    public virtual bool IsSolid(Block target, Direction direction, int meta)
+    public virtual bool IsSolid(Block target, Direction direction)
     {
         return true;
     }

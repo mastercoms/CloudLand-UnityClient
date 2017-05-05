@@ -75,7 +75,7 @@ public class ActionManager : MonoBehaviour {
                 if(span > breakingBlock.GetBreakTime(inventory.GetSelectedItem()))
                 {
                     // Should be finished
-                    client.chunkManager.setBlockAt(x, y, z, 0, 0);
+                    client.chunkManager.setBlockAt(x, y, z, 0);
                     ClientRemoveBlockMessage removeBlockMessage = new ClientRemoveBlockMessage();
                     removeBlockMessage.X = x;
                     removeBlockMessage.Y = y;
@@ -111,8 +111,7 @@ public class ActionManager : MonoBehaviour {
         if (Input.GetMouseButtonDown(1) || c)
         {
             cancelBreaking();
-            int f = client.chunkManager.getFullBlockAt(x, y, z);
-            int id = f >> 16;
+            int id = client.chunkManager.getBlockAt(x, y, z);
             if(id == 0)
             {
                 cancelBreaking();
@@ -152,7 +151,7 @@ public class ActionManager : MonoBehaviour {
                     int addingZ = Mathf.FloorToInt(adding.z);
                     Debug.Log(string.Format("ADDING AT ({0},{1},{2})", addingX, addingY, addingZ));
                     // Place block
-                    client.chunkManager.setBlockAt(addingX, addingY, addingZ, holding.Id, holding.Meta);
+                    client.chunkManager.setBlockAt(addingX, addingY, addingZ, holding.Id);
 
                     holding.Count--;
                     if(holding.Count <= 0)

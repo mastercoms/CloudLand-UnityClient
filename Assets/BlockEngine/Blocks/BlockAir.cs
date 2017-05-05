@@ -15,7 +15,7 @@ namespace BlockEngine.Blocks
         {
         }
 
-        public override int GetTexturePosition(Direction direction, int meta)
+        public override int GetTexturePosition(Direction direction)
         {
             return -1;
         }
@@ -25,12 +25,12 @@ namespace BlockEngine.Blocks
             return false;
         }
 
-        public override MeshData GetBlockMeshData(Chunk chunk, Chunk[] relations, int x, int y, int z, int meta, MeshData meshData)
+        public override MeshData GetBlockMeshData(Chunk chunk, Chunk[] relations, int x, int y, int z, MeshData meshData)
         {
             return meshData;
         }
 
-        public override bool IsSolid(Block target, Direction direction, int meta)
+        public override bool IsSolid(Block target, Direction direction)
         {
             return false;
         }

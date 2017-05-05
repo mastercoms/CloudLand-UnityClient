@@ -14,7 +14,6 @@ namespace CloudLand.Networking.Handlers
             byte[] ids = new byte[8192];
             byte[] data = new byte[8192];
             Buffer.BlockCopy(chunk.Chunk.ToByteArray(), 0, ids, 0, 8192);
-            Buffer.BlockCopy(chunk.Meta.ToByteArray(), 0, data, 0, 8192);
             client.getClientComponent().chunkManager.chunkQueue.QueueCreation(
                 chunk.X, chunk.Y, chunk.Z,
                 ids, data);

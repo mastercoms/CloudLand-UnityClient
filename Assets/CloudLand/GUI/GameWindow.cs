@@ -81,7 +81,7 @@ public class GameWindow : MonoBehaviour {
 
             bool clicked = false;
 
-            clicked |= GUI.Button(slot, Inventory.getItemTexture(id, meta), blankStyle);
+            clicked |= GUI.Button(slot, Inventory.getItemTexture(id), blankStyle);
             clicked |= GUI.Button(slotCount, count.ToString(), blankStyle);
 
             if (clicked)

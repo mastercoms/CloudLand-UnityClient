@@ -10,7 +10,7 @@ namespace BlockEngine.Blocks
 
         private int tex;
 
-        public override int GetTexturePosition(Direction direction, int meta)
+        public override int GetTexturePosition(Direction direction)
         {
             return tex;
         }
@@ -20,7 +20,7 @@ namespace BlockEngine.Blocks
             return true;
         }
 
-        public override bool HasFaceCollider(Direction dir, int meta)
+        public override bool HasFaceCollider(Direction dir)
         {
             return false;
         }

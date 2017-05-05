@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace BlockEngine.Blocks
+﻿namespace BlockEngine.Blocks
 {
     abstract class TransparentBlock : Block
     {
@@ -15,7 +10,7 @@ namespace BlockEngine.Blocks
             }
             else
             {
-                return false;
+                return base.isUpperSolid(chunk, x, y, z);
             }
         }
 
@@ -27,7 +22,7 @@ namespace BlockEngine.Blocks
             }
             else
             {
-                return false;
+                return base.isLowerSolid(chunk, x, y, z);
             }
         }
 
@@ -39,7 +34,7 @@ namespace BlockEngine.Blocks
             }
             else
             {
-                return false;
+                return base.isNorthernSolid(chunk, x, y, z);
             }
         }
 
@@ -51,7 +46,7 @@ namespace BlockEngine.Blocks
             }
             else
             {
-                return false;
+                return base.isEasternSolid(chunk, x, y, z);
             }
         }
 

@@ -152,7 +152,7 @@ public class Chunk : MonoBehaviour
                         else
                         {
                             Block block = Block.prototypes[id];
-                            meshData = block.GetBlockMeshData(this, relations, x, y, z, meshData);
+                            block.GetBlockMeshData(this, relations, x, y, z, meshData);
                             if (block.IsBlockAnimated()) animated = true;
                         }
                     }

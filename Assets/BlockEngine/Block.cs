@@ -79,6 +79,7 @@ public abstract class Block
     {
         Block upperBlock = GetUpperBlockPrototype(chunk, x, y, z);
         if (upperBlock == null) return false;
+        // if (upperBlock is TransparentBlock) return false;
         return upperBlock.IsSolid(upperBlock, Direction.down);
     }
 
@@ -99,6 +100,7 @@ public abstract class Block
     {
         Block lowerBlock = GetLowerBlockPrototype(chunk, x, y, z);
         if(lowerBlock == null) return false;
+        //if (lowerBlock is TransparentBlock) return false;
         return lowerBlock.IsSolid(lowerBlock, Direction.up);
     }
 
@@ -119,6 +121,7 @@ public abstract class Block
     {
         Block northernBlock = GetNorthernBlockPrototype(chunk, x, y, z);
         if (northernBlock == null) return false;
+        // if (northernBlock is TransparentBlock) return false;
         return northernBlock.IsSolid(northernBlock, Direction.south);
     }
 
@@ -139,6 +142,7 @@ public abstract class Block
     {
         Block southernBlock = GetSouthernBlockPrototype(chunk, x, y, z);
         if (southernBlock == null) return false;
+        // if (southernBlock is TransparentBlock) return false;
         return southernBlock.IsSolid(southernBlock, Direction.north);
     }
 
@@ -159,6 +163,7 @@ public abstract class Block
     {
         Block easternBlock = GetEasternBlockPrototype(chunk, x, y, z);
         if (easternBlock == null) return false;
+        // if (easternBlock is TransparentBlock) return false;
         return easternBlock.IsSolid(easternBlock, Direction.west);
     }
 
@@ -179,6 +184,7 @@ public abstract class Block
     {
         Block westernBlock = GetWesternBlockPrototype(chunk, x, y, z);
         if (westernBlock == null) return false;
+        // if (westernBlock is TransparentBlock) return false;
         return westernBlock.IsSolid(westernBlock, Direction.east);
     }
 
@@ -186,33 +192,32 @@ public abstract class Block
     public virtual MeshData GetBlockMeshData (Chunk chunk, Chunk[] relations, int x, int y, int z, MeshData meshData)
     {
         if (!isUpperSolid(chunk, x, y, z)){
-            meshData = FaceDataUp(chunk, x, y, z,  meshData);
+            FaceDataUp(chunk, x, y, z,  meshData);
         }
-
         
         if (!isLowerSolid(chunk, x, y, z))
         {
-            meshData = FaceDataDown(chunk, x, y, z, meshData);
+            FaceDataDown(chunk, x, y, z, meshData);
         }
         
         if (!isNorthernSolid(chunk, x, y, z))
         {
-            meshData = FaceDataNorth(chunk, x, y, z, meshData);
+            FaceDataNorth(chunk, x, y, z, meshData);
         }
 
         if (!isSouthernSolid(chunk, x, y, z))
         {
-            meshData = FaceDataSouth(chunk, x, y, z, meshData);
+            FaceDataSouth(chunk, x, y, z, meshData);
         }
 
         if (!isEasternSolid(chunk, x, y, z))
         {
-            meshData = FaceDataEast(chunk, x, y, z, meshData);
+            FaceDataEast(chunk, x, y, z, meshData);
         }
 
         if (!isWesternSolid(chunk, x, y, z))
         {
-            meshData = FaceDataWest(chunk, x, y, z, meshData);
+            FaceDataWest(chunk, x, y, z, meshData);
         }
 
         return meshData;

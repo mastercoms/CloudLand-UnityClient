@@ -34,15 +34,20 @@ public class ChunkLoadQueue : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        lock(creationQueue)
+        ArrayList o = new ArrayList();
+        lock (creationQueue)
         {
             int countCreation = 0;
             while(creationQueue.Count > 0 && countCreation < 1)
             {
                 countCreation++;
                 ChunkCreationParameters para = creationQueue.Dequeue();
-                chunkManager.CreateChunk(para.x, para.y, para.z, para.ids);
+                o.Add(para);
             }
+        }
+        foreach(ChunkCreationParameters para in o)
+        {
+            chunkManager.CreateChunk(para.x, para.y, para.z, para.ids);
         }
 
         lock(relationQueue)
@@ -71,7 +76,18 @@ public class ChunkLoadQueue : MonoBehaviour {
         }
 	}
 
-    public void QueueCreation(int x, int y, int z, byte[] ids, byte[] data)
+    public void QueueCreationBatch(ChunkCreationParameters[] batch)
+    {
+        lock(creationQueue)
+        {
+            foreach(ChunkCreationParameters p in batch)
+            {
+                creationQueue.Enqueue(p);
+            }
+        }
+    }
+
+    public void QueueCreation(int x, int y, int z, byte[] ids)
     {
         ChunkCreationParameters c = new ChunkCreationParameters()
         {

@@ -1,4 +1,6 @@
-﻿//Reference:https://www.shadertoy.com/view/MsXSRN#
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+//Reference:https://www.shadertoy.com/view/MsXSRN#
 
 Shader "浅墨Shader编程/Volume10/ScreenOilPaintEffect" 
 {
@@ -69,7 +71,7 @@ Shader "浅墨Shader编程/Volume10/ScreenOilPaintEffect"
 
 				//【2】填充此输出结构
 				//输出的顶点位置为模型视图投影矩阵乘以顶点位置，也就是将三维空间中的坐标投影到了二维窗口
-				Output.vertex = mul(UNITY_MATRIX_MVP, Input.vertex);
+				Output.vertex = UnityObjectToClipPos(Input.vertex);
 				//输出的纹理坐标也就是输入的纹理坐标
 				Output.texcoord = Input.texcoord;
 				//输出的颜色值也就是输入的颜色值

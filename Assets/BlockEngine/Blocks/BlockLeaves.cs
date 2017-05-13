@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BlockEngine.Blocks
 {
-    class BlockLeaves : Block
+    class BlockLeaves : TransparentBlock
     {
 
         private int oak;
